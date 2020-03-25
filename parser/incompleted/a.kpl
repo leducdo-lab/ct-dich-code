@@ -1,0 +1,16 @@
+Program Example1; (* Example 1 *)
+Var n : Integer;
+    x : Integer;
+    y : Integer;
+    z : Integer;
+
+Function F(n : Integer) : Integer;
+  Begin
+    If n = 0 Then 
+      Begin
+        x,y,z := 'y',31,x+z; 
+        x,y := 3, 'x'
+      End
+  End;
+Begin
+End. (* Example 1 *)
