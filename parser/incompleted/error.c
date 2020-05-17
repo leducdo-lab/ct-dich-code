@@ -64,6 +64,9 @@ void error(ErrorCode err, int lineNo, int colNo) {
   case ERR_INVALIDSUBDECL:
     printf("%d-%d:%s\n", lineNo, colNo, ERM_INVALIDSUBDECL);
     break;
+  case ERR_KW_UPPER:
+    printf("%d-%d:%s\n", lineNo, colNo, ERM_KW_UPPER);
+    break;
   }
   exit(0);
 }

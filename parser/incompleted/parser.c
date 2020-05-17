@@ -371,6 +371,10 @@ void compileStatement(void) {
   case KW_FOR:
     compileForSt();
     break;
+  case KW_RETURN:
+    eat(KW_RETURN);
+    compileCondition();
+    break;
     // EmptySt needs to check FOLLOW tokens
   case SB_SEMICOLON:
   case KW_END:
@@ -545,6 +549,9 @@ void compileCondition2(void) {
   case SB_GT:
     eat(SB_GT);
     compileExpression();
+    break;
+  case SB_SEMICOLON:
+    eat(SB_SEMICOLON);
     break;
   default:
     error(ERR_INVALIDCOMPARATOR, lookAhead->lineNo, lookAhead->colNo);

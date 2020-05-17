@@ -68,6 +68,15 @@ Token* readIdentKeyword(void) {
   token->string[count] = '\0';
   token->tokenType = checkKeyword(token->string);
 
+  // if(token->tokenType != TK_NONE){
+  //   for(int i = 0; i < count; i++){
+  //     if(token->string[i] >= 'A' && token->string[i] <= 'Z'){
+  //       error(ERR_KW_UPPER, token->lineNo, token->colNo);
+  //       return NULL;
+  //     }
+  //   }
+  // }
+
   if (token->tokenType == TK_NONE)
     token->tokenType = TK_IDENT;
 
@@ -152,6 +161,9 @@ Token* getToken(void) {
     if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
       readChar();
       return makeToken(SB_LE, ln, cn);
+    } else if((currentChar != EOF) && (charCodes[currentChar] == CHAR_GT)){
+      readChar();
+      return makeToken(SB_NEQ, ln, cn);
     } else return makeToken(SB_LT, ln, cn);
   case CHAR_GT:
     ln = lineNo;
@@ -160,6 +172,9 @@ Token* getToken(void) {
     if ((currentChar != EOF) && (charCodes[currentChar] == CHAR_EQ)) {
       readChar();
       return makeToken(SB_GE, ln, cn);
+    } else if((currentChar != EOF) && (charCodes[currentChar] == CHAR_LT)){
+      readChar();
+      return makeToken(SB_NEQ, ln, cn);
     } else return makeToken(SB_GT, ln, cn);
   case CHAR_EQ: 
     token = makeToken(SB_EQ, lineNo, colNo);
@@ -276,6 +291,7 @@ void printToken(Token *token) {
   case KW_DO: printf("KW_DO\n"); break;
   case KW_FOR: printf("KW_FOR\n"); break;
   case KW_TO: printf("KW_TO\n"); break;
+  case KW_RETURN: printf("KW_RETURN\n"); break;
 
   case SB_SEMICOLON: printf("SB_SEMICOLON\n"); break;
   case SB_COLON: printf("SB_COLON\n"); break;

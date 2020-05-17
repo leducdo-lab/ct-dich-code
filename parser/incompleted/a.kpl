@@ -11,6 +11,7 @@ Function F(n : Integer) : Integer;
         x,y,z := 'y',31,x+z; 
         x,y := 3, 'x'
       End
+    ELSE RETURN n;
   End;
 Begin
 End. (* Example 1 *)
