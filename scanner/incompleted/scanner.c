@@ -87,6 +87,14 @@ Token* readIdentKeyword(void) {
     TokenType type = checkKeyword(token->string);
 
     if(type != TK_NONE){
+      if(type != TK_CHAR || type != TK_EOF || type != TK_IDENT || type != TK_NUMBER){
+        for(int i = 0; i < count; i++){
+          if(token->string[i] >= 'A' && token->string[i] <= 'Z'){
+            error(ERR_KEYWORDUPPER, token->lineNo, token->colNo);
+            return NULL;
+          }
+        }
+      }
       token->tokenType = type;
     }
   }
