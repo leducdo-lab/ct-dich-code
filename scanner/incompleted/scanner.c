@@ -32,17 +32,7 @@ void skipBlank() {
 
 void skipComment() {
   // TODO
-  /*while (1)
-  {
-    readChar();
-    if(currentChar != -1 && charCodes[currentChar] == CHAR_LPAR){
-      readChar();
-      if(currentChar != -1 && charCodes[currentChar] == CHAR_TIMES){
-        break;
-      }
-    }
-  }*/
-
+  
   while (1)
   {
     // Read next character
@@ -50,7 +40,7 @@ void skipComment() {
     
     if(currentChar == -1){ // End of File
       error(ERM_ENDOFCOMMENT, lineNo, colNo); // comment and with EOF
-    }else if(charCodes[currentChar] == CHAR_TIMES){ // Next is asterick character
+    }else if(charCodes[currentChar] == CHAR_TIMES || charCodes[currentChar] == CHAR_RPAR){ // Next is asterick character
       readChar(); // Get next character
 
       if(currentChar == -1){
@@ -238,6 +228,10 @@ Token* getToken(void) {
     readChar();
     switch (charCodes[currentChar])
     {
+      case CHAR_LPAR:
+        free(token);
+        skipComment();
+        return getToken();
       case CHAR_TIMES:
         /* code */
         free(token); // giai phong token de phuc vu viec doc ki tu sau comment
@@ -263,6 +257,10 @@ Token* getToken(void) {
       token->tokenType = SB_GE;
       readChar();
     }
+    if((currentChar != EOF) && charCodes[currentChar] == CHAR_LT){
+      token->tokenType = SB_NEQ;
+      readChar();
+    }
     return token;
   case CHAR_LT:
     // Token '<'
@@ -275,6 +273,10 @@ Token* getToken(void) {
     // }
     // return token;
     switch(charCodes[currentChar]){
+      case CHAR_GT:
+        token->tokenType = SB_NEQ;
+        readChar();
+        return token;
       case CHAR_EQ:
         token->tokenType = SB_LE;
         readChar();

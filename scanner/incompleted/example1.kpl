@@ -1,4 +1,8 @@
 program Example1; (* Example 1 *)
+var n : char;
+var A : array(.10.) of integer;
 begin
+n >< 3; (( n != 3 ))
 aBcdEF
+call 
 end. (* Example 1 *)
