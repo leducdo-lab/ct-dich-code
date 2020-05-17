@@ -1,0 +1,17 @@
+Program test; (*Test*)
+
+Var n: Integer;
+Function CV(n : Char) : Char;
+  Begin
+	If n = 'U' Then CV := 'V'
+	Else If n = 'E' Then CV := 'V'
+	Else	If n = 'O' Then CV := 'V'
+	Else	If n = 'A' Then CV := 'V'
+	Else	If n = 'I' Then CV := 'V'
+	Else CV := 'C';
+  End;
+
+Begin
+  For n := 0 To 24 Do
+  	CALL WRITEC(CV('a'));
+End.
