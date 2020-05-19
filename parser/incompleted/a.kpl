@@ -1,7 +1,7 @@
-Program Example1; (* Example 1 *)
-Var n : Integer;
-    x : Integer;
-    y : Integer;
+Program Example1; { Example 1 }
+Var n : Integer; // abc23
+    x : Integer; { abc 13 }
+    y : Integer; 
     z : Integer;
 
 Function F(n : Integer) : Integer;
@@ -11,7 +11,7 @@ Function F(n : Integer) : Integer;
         x,y,z := 'y',31,x+z; 
         x,y := 3, 'x'
       End
-    ELSE RETURN n;
+    ELSE RETURN n; ((hello))
   End;
 Begin
 End. (* Example 1 *)
