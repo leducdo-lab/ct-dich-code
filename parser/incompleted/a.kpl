@@ -6,9 +6,9 @@ Var n : Integer; // abc23
 
 Function F(n : Integer) : Integer;
   Begin
-    If n = 0 Then 
+    If n = 0 Then
       Begin
-        x,y,z := 'y',31,x+z; 
+        x,y,z := 'y',31,x .; 
         x,y := 3, 'x'
       End
     ELSE RETURN n; ((hello))

@@ -587,10 +587,6 @@ void compileExpression(void) {
       eat(SB_MINUS);
       compileExpression2();
       break;
-    // case SB_COMMA:
-    //   eat(SB_COMMA);
-    //   compileExpressions();
-    //   break;
     default:
       compileExpression2();
       break;
@@ -599,13 +595,9 @@ void compileExpression(void) {
 }
 
 void compileExpressions(void){
-  // while(lookAhead->tokenType == TK_IDENT){
-  //   eat(TK_IDENT);
-  //   compileExpression();
-  // }
+  
   switch(lookAhead->tokenType){
     case TK_IDENT:
-      //eat(TK_IDENT);
       compileExpression2();
       break;
     case TK_NUMBER:
@@ -639,14 +631,14 @@ void compileExpression3(void) {
       compileExpression3();
       break;
      // Follow (statement)
-    case SB_SEMICOLON:
+    case SB_SEMICOLON: //;
     case KW_END:
     case KW_ELSE:
     // Follow (For statement)
     case KW_TO:
     case KW_DO:
     // Follow (arguments2)
-    case SB_COMMA:
+    case SB_COMMA:// ,
     // Follow (condition2)
     case SB_EQ:
     case SB_NEQ:
@@ -713,6 +705,7 @@ void compileTerm2(void) {
   case SB_RSEL:
   // Follow (if statement)
   case KW_THEN:
+  case SB_PERIOD:
       break;
   default:
     error(ERR_INVALIDTERM, lookAhead->lineNo, lookAhead->colNo);
@@ -782,7 +775,8 @@ void compileFactor(void) {
     case KW_THEN:
       break;
     // Follow term2
-    
+    case SB_PERIOD:
+      break;
     default:
       error(ERR_INVALIDFACTOR, lookAhead->lineNo, lookAhead->colNo);
       break;
